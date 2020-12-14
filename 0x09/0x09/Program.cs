@@ -14,7 +14,7 @@ namespace _0x09 {
             }
             int cur = 0;
             while (x != cur) {
-                revertedNumber = revertedNumber * 10 + x % 10;
+                cur = cur * 10 + x % 10;
                 x /= 10;
             }
 
