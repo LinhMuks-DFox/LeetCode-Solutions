@@ -22,6 +22,7 @@
     >>>"424 with word"
     -->424
 */
+// Tested! Well Done!
 public class Solution
 {
     public int MyAtoi(string s)
