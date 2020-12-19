@@ -13,6 +13,30 @@ namespace _0x14
         }
     }
     /*Tested! Done! but not fast!*/
+
+    /*
+        #Python Version:
+        class Solution:
+            def isValid(self, s):
+                stack = []
+                if len(s) % 2 == 1:
+                    return False
+                for i in s:
+                    if i=="(" or i=="[" or i=="{":
+                        stack.append(i)
+                    else:
+                        if len(stack) == 0:
+                            return False
+                        ch = stack.pop()
+                        if i == ")" and ch !="(":
+                            return False
+                        if i == "]" and ch != "[":
+                            return False
+                        if i == "}" and ch != "{":
+                            return False
+                return len(stack) == 0;
+    
+    */
     class Solution
     {
         public bool IsValid(string s)
