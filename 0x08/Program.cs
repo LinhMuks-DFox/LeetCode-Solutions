@@ -36,38 +36,33 @@ public class Converter
 {
     public int Convert(string str)
     {
-        int n = str.Length, index = 0;
-        int sign = 1; int ret = 0;
-        // remove the pre-'\space' of str.
-        while (index < n && str[index] == ' ')
-        {
-            index++;
-        }
-        // if only '\space' existed. 
-        if (index == n)
+        int index = 0, sign = 1, ret = 0;
+        string trimmed = str.Trim();
+        // if postive
+        if (trimmed == "")
             return 0;
-            // if postive
-        if (str[index] == '+')
+        if (trimmed[index] == '+')
         {
             index++;
         }
         // if negative
-        else if (str[index] == '-')
+        else if (trimmed[index] == '-')
         {
             sign *= -1;
             index++;
         }
         // if the char after +/- is not valid digit
-        else if (!Char.IsDigit(str[index]))
+        else if (!Char.IsDigit(trimmed[index]))
             return 0;
-        
-        while (index < n && Char.IsDigit(str[index]))
+
+        while (index < trimmed.Length && Char.IsDigit(trimmed[index]))
         {
-            int digit = str[index] - '0';
-            if (ret > (Int32.MaxValue - digit) / 10) {
+            int digit = trimmed[index] - '0';
+            if (ret > (Int32.MaxValue - digit) / 10)
+            {
                 // 本来应该是 ans * 10 + digit > Integer.MAX_VALUE
                 // 但是 *10 和 + digit 都有可能越界，所有都移动到右边去就可以了。
-                return sign == -1? Int32.MinValue : Int32.MaxValue;
+                return sign == -1 ? Int32.MinValue : Int32.MaxValue;
             }
             ret = ret * 10 + digit;
             index++;
