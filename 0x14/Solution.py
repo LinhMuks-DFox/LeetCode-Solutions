@@ -17,3 +17,7 @@ class Solution:
                 if i == "}" and ch != "{":
                     return False
         return len(stack) == 0
+
+sol = Solution()
+
+print(sol.is_valid("(())"))
