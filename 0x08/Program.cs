@@ -17,16 +17,14 @@
     4. Return (2**31-1 / -2**31) when inputted number is overflow
     >>>"-91283472332" 
     >>>-2147483648
+
+    5. 
+    >>>"424 with word"
+    -->424
 */
 public class Solution
 {
-    static void Main(string[] args)
-    {
-        string t = "-91283472332";
-        Console.WriteLine(MyAtoi(t));
-    }
-
-    public static int MyAtoi(string s)
+    public int MyAtoi(string s)
     {
         Converter converter = new Converter();
         return converter.Convert(s);
@@ -52,31 +50,34 @@ public class Converter
         else if (str[index] == '-')
         {
             sign *= -1;
+            index++;
         }
-        else if (!IsDigit(str[index]))
+        else if (!Char.IsDigit(str[index]))
             return 0;
-        while (index < n)
+        while (index < n && Char.IsDigit(str[index]))
         {
-            if (!IsDigit(str[index]))
-                return 0;
             int digit = str[index] - '0';
             if (ret > (Int32.MaxValue - digit) / 10) {
                 // 本来应该是 ans * 10 + digit > Integer.MAX_VALUE
                 // 但是 *10 和 + digit 都有可能越界，所有都移动到右边去就可以了。
-                return sign==-1? Int32.MinValue : Int32.MaxValue;
+                return sign == -1? Int32.MinValue : Int32.MaxValue;
             }
             ret = ret * 10 + digit;
             index++;
         }
 
-        return ret;
+        return ret * sign;
     }
 
-    private bool IsDigit(char c)
-    {
-        return ('0' <= c && c <= '9');
-    }
 }
 
 
+public class MainPro
+{
+    public static void Main()
+    {
+        string test = "-4252 with world!"; // --> -4252
+        Console.WriteLine(new Solution().MyAtoi(test));
+    }
+}
 
