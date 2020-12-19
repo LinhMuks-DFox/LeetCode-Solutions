@@ -38,23 +38,29 @@ public class Converter
     {
         int n = str.Length, index = 0;
         int sign = 1; int ret = 0;
+        // remove the pre-'\space' of str.
         while (index < n && str[index] == ' ')
         {
             index++;
         }
+        // if only '\space' existed. 
         if (index == n)
             return 0;
+            // if postive
         if (str[index] == '+')
         {
             index++;
         }
+        // if negative
         else if (str[index] == '-')
         {
             sign *= -1;
             index++;
         }
+        // if the char after +/- is not valid digit
         else if (!Char.IsDigit(str[index]))
             return 0;
+        
         while (index < n && Char.IsDigit(str[index]))
         {
             int digit = str[index] - '0';
