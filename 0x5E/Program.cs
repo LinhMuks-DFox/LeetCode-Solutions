@@ -19,7 +19,7 @@ public class TreeNode {
 public class Solution{
 
     public IList<int> InorderTraversal(TreeNode root) {
-        List<int> ret = new List<ret>(10);
+        List<int> ret = new List<int>(10);
         InorderTraversal(root, ret);
         return ret;
     }
@@ -28,7 +28,7 @@ public class Solution{
         if(node == null)
             return;
         InorderTraversal(node.left, list);
-        lsit.Add(node.val);
+        list.Add(node.val);
         InorderTraversal(node.right, list);
     }
 }
